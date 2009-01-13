@@ -20,19 +20,17 @@ class Redirect_to_first_child {
         /* Execute this behaviour only if page equals the current page.          */
         if (CURRENT_URI == $page->url) {
             /* Workaround for Behaviour::loadPageHack() throwing errors. */
-            AutoLoader::addFolder(dirname(__FILE__));            
+            if (class_exists('AutoLoader')) {
+                AutoLoader::addFolder(dirname(__FILE__));
+            }
 
             unset($params);
             $params['limit'] = 1;
             if ($child = $page->children($params)) {
-                header('Location: ' . $child->url()); 
-                die();            
+                header('Location: ' . $child->url());
+                die();
             }
-        } 
+        }
     }
     
 }
-
-
-
-
