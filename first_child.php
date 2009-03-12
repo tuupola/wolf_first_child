@@ -18,7 +18,7 @@ include dirname(__FILE__) . '/PageRedirectToFirstChild.php';
 class Redirect_to_first_child {
     
     public function __construct(&$page, $params) {
-        /* Parent behaviours seem to be automatically executed. Bug or feature*? */
+        /* Parent behaviours seem to be automatically executed. Bug or feature?  */
         /* Execute this behaviour only if page equals the current page.          */
         $check_url = '/' . str_replace(URL_PUBLIC, '', $page->url());
         if ($check_url == $_SERVER['REQUEST_URI']) {

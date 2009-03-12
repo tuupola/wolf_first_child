@@ -16,7 +16,9 @@ Plugin::setInfos(array(
     'id'          => 'first_child',
     'title'       => 'First Child', 
     'description' => 'Redirects page to its first child.', 
-    'version'     => '0.1.1',
+    'version'     => '0.1.2',
+    'license'     => 'MIT',
+    'author'      => 'Mika Tuupola',
     'update_url'  => 'http://www.appelsiini.net/download/frog-plugins.xml',
     'website'     => 'http://www.appelsiini.net/'
 ));
