@@ -1,0 +1,5 @@
+h3. Note!
+
+There is an "issue":http://code.google.com/p/madebyfrogs/issues/detail?id=143 with Frog which prevent page tree having multiple behaviours inside a tree. You need to "patch":http://madebyfrogs.googlecode.com/issues/attachment?aid=-8503649547561375628&name=uses_parameters.diff Frog for this plugin to work properly.
+
+
