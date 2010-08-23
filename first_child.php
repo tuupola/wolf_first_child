@@ -1,9 +1,9 @@
 <?php
 
 /*
- * First Child - Frog CMS behaviour
+ * First Child - Wolf CMS behaviour
  *
- * Copyright (c) 2009 Mika Tuupola
+ * Copyright (c) 2009-2010 Mika Tuupola
  *
  * Licensed under the MIT license:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -23,7 +23,7 @@ class Redirect_to_first_child {
         $check_url  = '/' . str_replace(URL_PUBLIC, '', $page->url());
         $check_url  = str_replace(URL_SUFFIX, '', $check_url);
         $parsed_url = parse_url($_SERVER['REQUEST_URI']);
-        if ($check_url ==$parsed_url["path"]) {
+        if ($check_url == $parsed_url["path"]) {
             /* Workaround for Behaviour::loadPageHack() throwing errors. */
             if (class_exists('AutoLoader')) {
                 AutoLoader::addFolder(dirname(__FILE__));
