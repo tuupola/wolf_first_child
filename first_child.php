@@ -20,8 +20,10 @@ class Redirect_to_first_child {
     public function __construct(&$page, $params) {
         /* Parent behaviours seem to be automatically executed. Bug or feature?  */
         /* Execute this behaviour only if page equals the current page.          */
-        $check_url = '/' . str_replace(URL_PUBLIC, '', $page->url());
-        if ($check_url == $_SERVER['REQUEST_URI']) {
+        $check_url  = '/' . str_replace(URL_PUBLIC, '', $page->url());
+        $check_url  = str_replace(URL_SUFFIX, '', $check_url);
+        $parsed_url = parse_url($_SERVER['REQUEST_URI']);
+        if ($check_url ==$parsed_url["path"]) {
             /* Workaround for Behaviour::loadPageHack() throwing errors. */
             if (class_exists('AutoLoader')) {
                 AutoLoader::addFolder(dirname(__FILE__));
