@@ -31,9 +31,7 @@ class Redirect_to_first_child {
                 AutoLoader::addFolder(dirname(__FILE__));
             }
 
-            unset($params);
-            $params['limit'] = 1;
-            if ($child = $page->children($params)) {
+            if ($child = $page->children(array('limit' => 1))) {
                 /* For Toad see http://github.com/tuupola/toad */
                 if (defined('TOAD')) {
                     header('Location: ' . $child[0]->url());
@@ -42,11 +40,15 @@ class Redirect_to_first_child {
                 }
                 die();
             }
+        } else {
+            foreach ($params as $slug) {
+              $page = Page::findBySlug($slug, $page);
+            }
         }
     }
-    
+
     public function usesParameters() {
         return false;
     }
-    
+
 }
