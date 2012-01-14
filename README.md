@@ -6,7 +6,7 @@ A bit dirty, so no warranties.
 
 Tested with WolfCMS 0.7.5
 
-# Installation
+## Installation
 
     cd into your wolf root
     cd wolf/plugins
@@ -18,7 +18,7 @@ Tested with WolfCMS 0.7.5
 * Check the box under Enable for First Child.
 
 
-# Usage
+## Usage
 
 * Create a new page.
 * Go to Settings.
