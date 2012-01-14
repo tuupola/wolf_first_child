@@ -16,14 +16,16 @@
 include dirname(__FILE__) . '/PageRedirectToFirstChild.php';
 
 class Redirect_to_first_child {
-    
+
     public function __construct(&$page, $params) {
         /* Parent behaviours seem to be automatically executed. Bug or feature?  */
         /* Execute this behaviour only if page equals the current page.          */
         $check_url  = '/' . str_replace(URL_PUBLIC, '', $page->url());
         $check_url  = str_replace(URL_SUFFIX, '', $check_url);
         $parsed_url = parse_url($_SERVER['REQUEST_URI']);
-        if ($check_url == $parsed_url["path"]) {
+        $parsed_url = str_replace(URL_SUFFIX, '', $parsed_url['path']);
+
+        if ($check_url == $parsed_url) {
             /* Workaround for Behaviour::loadPageHack() throwing errors. */
             if (class_exists('AutoLoader')) {
                 AutoLoader::addFolder(dirname(__FILE__));
@@ -34,9 +36,9 @@ class Redirect_to_first_child {
             if ($child = $page->children($params)) {
                 /* For Toad see http://github.com/tuupola/toad */
                 if (defined('TOAD')) {
-                    header('Location: ' . $child[0]->url());                                        
+                    header('Location: ' . $child[0]->url());
                 } else {
-                    header('Location: ' . $child->url());                    
+                    header('Location: ' . $child->url());
                 }
                 die();
             }
