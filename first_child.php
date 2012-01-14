@@ -54,7 +54,7 @@ class Redirect_to_first_child {
                      $page->{$page->behavior_id} = Behavior::load($page->behavior_id, $page, $params);
                 }
             } else { // not found
-                page_not_found($_SERVER['REQUEST_URI']);//var_dump($page);//break;
+                page_not_found($_SERVER['REQUEST_URI']);
             }
         }
     }
