@@ -20,12 +20,7 @@ class Redirect_to_first_child {
     public function __construct(&$page, $params) {
         /* Parent behaviours seem to be automatically executed. Bug or feature?  */
         /* Execute this behaviour only if page equals the current page.          */
-        $check_url  = '/' . str_replace(URL_PUBLIC, '', $page->url());
-        $check_url  = str_replace(URL_SUFFIX, '', $check_url);
-        $parsed_url = parse_url($_SERVER['REQUEST_URI']);
-        $parsed_url = str_replace(URL_SUFFIX, '', $parsed_url['path']);
-
-        if ($check_url == $parsed_url) {
+        if (url_match($page->getUri())) {
             /* Workaround for Behaviour::loadPageHack() throwing errors. */
             if (class_exists('AutoLoader')) {
                 AutoLoader::addFolder(dirname(__FILE__));
@@ -45,13 +40,13 @@ class Redirect_to_first_child {
             foreach ($params as $slug) {
                 $page = Page::findBySlug($slug, $page);
             }
-
+            
             // if found
             if ($page instanceof Page) {
                 // check for behavior
                 if ($page->behavior_id != '') {
                     // add a instance of the behavior with the name of the behavior
-                     $page->{$page->behavior_id} = Behavior::load($page->behavior_id, $page, $params);
+                    $page->{$page->behavior_id} = Behavior::load($page->behavior_id, $page, $params);
                 }
             } else { // not found
                 page_not_found($_SERVER['REQUEST_URI']);
