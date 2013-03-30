@@ -15,7 +15,7 @@
 
 include dirname(__FILE__) . '/PageRedirectToFirstChild.php';
 
-class Redirect_to_first_child {
+class RedirectToFirstChild {
 
     public function __construct(&$page, $params) {
         /* Parent behaviours seem to be automatically executed. Bug or feature?  */
@@ -39,17 +39,17 @@ class Redirect_to_first_child {
             // find called page
             foreach ($params as $slug) {
                 $page = Page::findBySlug($slug, $page);
-            }
-            
-            // if found
-            if ($page instanceof Page) {
-                // check for behavior
-                if ($page->behavior_id != '') {
-                    // add a instance of the behavior with the name of the behavior
-                    $page->{$page->behavior_id} = Behavior::load($page->behavior_id, $page, $params);
+                // if found
+                if ($page instanceof Page) {
+                    // check for behavior
+                    if ($page->behavior_id != '') {
+                        // add a instance of the behavior with the name of the behavior
+                        $page->{$page->behavior_id} = Behavior::load($page->behavior_id, $page, $params);
+                        return;
+                    }
+                } else { // not found
+                    pageNotFound($_SERVER['REQUEST_URI']);
                 }
-            } else { // not found
-                page_not_found($_SERVER['REQUEST_URI']);
             }
         }
     }
