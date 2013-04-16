@@ -16,10 +16,11 @@ Plugin::setInfos(array(
     'id'          => 'first_child',
     'title'       => 'First Child',
     'description' => 'Redirects page to its first child.',
-    'version'     => '0.1.4',
+    'version'     => '0.1.2',
     'license'     => 'MIT',
-    'author'      => 'Jonne Haß/Mika Tuupola',
-    'website'     => 'https://github.com/MrZYX/wolf_first_child'
+    'author'      => 'Mika Tuupola',
+    'update_url'  => 'http://www.appelsiini.net/download/frog-plugins.xml',
+    'website'     => 'https://github.com/tuupola/wolf_first_child'
 ));
 
 Behavior::add('Redirect_to_first_child', 'first_child/first_child.php');
